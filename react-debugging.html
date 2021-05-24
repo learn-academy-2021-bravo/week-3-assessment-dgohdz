@@ -56,6 +56,8 @@
               <Card
                 drawCard={ this.drawCard }
                 shuffle={ this.shuffle }
+                //parent class wasn't being sent to child 
+                hand={this.state.hand}
               />
             </>
           )
@@ -80,14 +82,15 @@
           }
           return(
             <>
-              <button onClick={ }>
+            //"this" and "props" wasn't being sent from drawCard and shuffle.
+              <button onClick={ this.props.drawCard }> how to pass info from parent to child.
                 Click to Draw a Card
               </button>
-              <button onClick={ shuffle }>
+              <button onClick={ this.props.shuffle }>
                 Return Cards and Shuffle Deck
               </button>
               <div style={ handStyles }>
-                { this.props.hand.map((card, index) => {
+                { this.props.hand.map((card, index) => { //where is map being called from? Undefined means something isn't being passed correctly.
                   return (
                     <div style={ cardStyles } key={ index }>
                       { card }
